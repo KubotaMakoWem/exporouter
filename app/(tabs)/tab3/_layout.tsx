@@ -16,9 +16,9 @@ const LayoutForTab3 = () => {
                     title: 'Tab3Stack2',
                     headerShown: true,
                     // presentation: 'card' // デフォルト、タブの【中】で横からスライドしてきて、戻るボタンあり、スワイプで戻る
-                    presentation: 'containedModal' // タブの【中】で全面モーダルが下から上まで迫り上がり、戻るボタン・クローズジェスチャーなし
+                    // presentation: 'containedModal' // タブの【中】で全面モーダルが下から上まで迫り上がり、戻るボタン・クローズジェスチャーなし
                     // presentation: 'fullScreenModal' // タブの【外】で全面モーダルが下から上まで迫り上がり、戻るボタン・クローズジェスチャーなし
-                    // presentation: 'modal' // タブの【外】でモーダルが下から途中まで迫り上がり、戻るボタンなし、クローズジェスチャーあり
+                    presentation: 'modal' // タブの【外】でモーダルが下から途中まで迫り上がり、戻るボタンなし、クローズジェスチャーあり
                     // presentation: 'formSheet' // modalと同じ？
                     // presentation: 'containedTransparentModal' // その名の通り、containedModalの背景が透明バージョン
                     // presentation: 'transparentModal' // その名の通り、modalの背景が透明バージョン

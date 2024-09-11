@@ -1,0 +1,185 @@
+openapi: 3.0.0
+info:
+  title: "TaskList API"
+  description: "タスクリストを管理するAPI"
+  version: 1.0.0
+servers:
+  - url: "http://localhost:3000"
+    description: "ローカル開発環境"
+paths:
+  /task:
+    get:
+      tags:
+        - TaskList
+      summary: "タスクリスト取得"
+      description: "全タスクのリストを絞り込みなしで取得します。"
+      operationId: ListupTask
+      responses:
+        200:
+          description: "タスクリストを正常に取得しました。"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Task"
+    post:
+      tags:
+        - TaskList
+      summary: "タスク登録"
+      description: "タスクを登録し登録後のタスクを取得します。"
+      operationId: CreateTask
+      requestBody:
+        description: SaveTask
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SaveTask"
+      responses:
+        201:
+          description: "タスクを正常に登録しました。"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+  "/task/{id}":
+    get:
+      tags:
+        - TaskList
+      summary: "タスク取得"
+      description: "タスクを取得します。"
+      operationId: GetTask
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            description: "取得対象タスクのid"
+            type: integer
+            format: int64
+            example: 0
+      responses:
+        200:
+          description: "タスクを正常に取得しました。"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+        404:
+          description: "取得対象のタスクが存在しません。"
+    put:
+      tags:
+        - TaskList
+      summary: "タスク更新"
+      description: "タスクを更新し更新後のタスクを取得します。"
+      operationId: UpdateTask
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            description: "更新対象タスクのid"
+            type: integer
+            format: int64
+            example: 0
+      requestBody:
+        description: SaveTask
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SaveTask"
+      responses:
+        201:
+          description: "タスクを正常に更新しました。"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Task"
+        404:
+          description: "更新対象のタスクが存在しません。"
+    delete:
+      tags:
+        - TaskList
+      summary: "タスク削除"
+      description: "タスクを削除します。"
+      operationId: DeleteTask
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            description: "削除対象タスクのid"
+            type: integer
+            format: int64
+            example: 0
+      responses:
+        200:
+          description: "タスクを正常に削除しました。"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+        404:
+          description: "削除対象のタスクが存在しません。"
+components:
+  schemas:
+    Task:
+      title: Task
+      description: "タスクのタイトル、完了期限、完了フラグを持つオブジェクト"
+      required:
+        - id
+        - title
+        - limit
+        - done
+      properties:
+        id:
+          description: id
+          type: integer
+          format: int64
+          example: 0
+          nullable: false
+        title:
+          description: "タスク名"
+          type: string
+          example: "猫とお散歩"
+          nullable: false
+        limit:
+          description: "タスク完了期限"
+          type: string
+          example: "2024/2/22 22:22:22"
+          nullable: false
+        done:
+          description: "タスク完了フラグ"
+          type: boolean
+          example: false
+          nullable: false
+      type: object
+    SaveTask:
+      title: SaveTask
+      description: "idを除くタスクの情報をもつリクエスト"
+      required:
+        - title
+        - limit
+        - done
+      properties:
+        title:
+          description: "タスク名"
+          type: string
+          example: "猫とお散歩"
+          nullable: false
+        limit:
+          description: "タスク完了期限"
+          type: string
+          example: "2024/2/22 22:22:22"
+          nullable: false
+        done:
+          description: "タスク完了フラグ"
+          type: boolean
+          example: false
+          nullable: false
+      type: object
+tags:
+  - name: TaskList
+    description: "タスクリストに関するAPI群"

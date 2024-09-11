@@ -1,4 +1,4 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome5';
+import Icon from '@expo/vector-icons/AntDesign';
 import { Tabs } from 'expo-router';
 import React from 'react';
 
@@ -9,19 +9,19 @@ const LayoutForTabs = () => {
             <Tabs.Screen
                 name='index'
                 options={{
-                    title: 'Tab1',
+                    title: 'Home',
                     headerShown: false,
                     tabBarIcon: ({ color }) =>
-                        <FontAwesome size={28} name='home' color={color} />,
+                        <Icon size={28} name='home' color={color} />,
                 }}
             />
             <Tabs.Screen
                 name='tab2/index'
                 options={{
-                    title: 'Tab2',
+                    title: 'New Task',
                     headerShown: false,
                     tabBarIcon: ({ color }) =>
-                        <FontAwesome size={28} name='user-cog' color={color} />,
+                        <Icon size={28} name='pluscircleo' color={color} />,
                 }}
             />
             <Tabs.Screen
@@ -30,7 +30,7 @@ const LayoutForTabs = () => {
                     title: 'Tab3',
                     headerShown: false,
                     tabBarIcon: ({ color }) =>
-                        <FontAwesome size={28} name='cat' color={color} />,
+                        <Icon size={28} name='github' color={color} />,
                 }}
             />
         </Tabs>
